@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { motion } from 'framer-motion';
 import * as yup from 'yup';
 import aguias from '../../assets/aguias.png';
 import fotoTodos from '../../assets/foto_aguias.jpeg';
@@ -29,17 +30,31 @@ export function Menubar({ children }: MenuBarProps) {
                     <div className='cursor-pointer'>
                         {
                             openMenu ?
-                                <FiX
-                                    size={60}
-                                    color={'#ffffff'}
-                                    onClick={changeMenu}
-                                />
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <FiX
+                                        size={60}
+                                        color={'#ffffff'}
+                                        onClick={changeMenu}
+                                    />
+                                </motion.div>
+
                                 :
-                                <FiMenu
-                                    size={60}
-                                    color={'#ffffff'}
-                                    onClick={changeMenu}
-                                />
+                                <motion.section
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <FiMenu
+                                        size={60}
+                                        color={'#ffffff'}
+                                        onClick={changeMenu}
+                                    />
+                                </motion.section>
+
 
                         }
                     </div>
@@ -55,12 +70,9 @@ export function Menubar({ children }: MenuBarProps) {
                 </div>
 
                 <div className='flex flex-row h-full' >
-                    {
-                        openMenu ?
-                            <SideMenu />
-                            :
-                            <></>
-                    }
+                    <SideMenu
+                        open={openMenu}
+                    />
 
                     {children}
                 </div>
