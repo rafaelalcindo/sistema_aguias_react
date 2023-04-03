@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Link } from 'react-router-dom';
 
 import { UsuarioProps } from '../../../types/Usuario';
 
@@ -21,12 +22,18 @@ export function UsuarioTable({ title, list }: UsuarioTable) {
         <div className="w-full">
             <div className="p-2 flex items-center justify-center body">
                 <div className="container">
-                    <div className=" bg-darkPurple rounded-t-xl py-2 px-4 text-white">
-                        {title}
+                    <div className="flex flex-row justify-between text-2xl py-4 px-4 ">
+                        <div className="nameTable">
+                            <h2 className={`text-neutral-700`} > {title}</h2>
+                        </div>
+                        <div className={`buttonAdd`}>
+                            <Link to={"/usuarios/add"} className={`text-blue-900`} > Adicionar </Link>
+                        </div>
+
                     </div>
-                    <table className="w-full  bg-darkestBlue rounded-b-lg  sm:shadow-lg">
+                    <table className="w-full  bg-lightWhite rounded-b-lg  sm:shadow-lg">
                         <thead >
-                            <tr className={`flex flex-col flex-no wrap lg:table-row rounded-l-lg lg:rounded-none mb-5 sm:mb-0 lg:mb-0`}>
+                            <tr className={`flex flex-col flex-no wrap lg:table-row rounded-l-lg lg:rounded-none mb-5 sm:mb-0 lg:mb-0 border-b-4 border-blue-950`}>
                                 <th className={`p-3 text-left h-1/6 lg:w-10 text-xs sm:text-base `} >
                                     Nome
                                 </th>

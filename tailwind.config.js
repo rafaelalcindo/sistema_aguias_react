@@ -10,7 +10,8 @@ module.exports = {
                 middleBlue: "#254d7e",
                 lightBlue: "#2e609b",
                 darkRed: "#cd2517",
-                lightRed: "#de1d0b"
+                lightRed: "#de1d0b",
+                lightWhite: "#ffffff"
 
             },
         },

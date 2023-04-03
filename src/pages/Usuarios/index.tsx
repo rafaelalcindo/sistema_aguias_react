@@ -35,7 +35,7 @@ export function Usuarios() {
 
 
                     <UsuarioTable
-                        title='Usuarios Table'
+                        title='Desbravadores'
                     />
 
                 </div>
