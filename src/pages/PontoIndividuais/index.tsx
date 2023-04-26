@@ -4,20 +4,18 @@ import api from '../../services/api';
 import { Context } from '../../context/AuthContext';
 import { Menubar } from '../../components/Menubar';
 import { Pagination } from '../../components/Pagination';
-import { UnidadePontoProps } from '../../types/UnidadePonto';
+import { UsuarioPontoProps } from '../../types/UsuarioPonto';
 import { ListaProps } from '../../types/ListaProps';
 
-import { PontoUnidadeTable } from '../../components/TableList/PontoUnidadeTable';
-
-import { PontoUnidadeFilter } from '../../components/Filters/PontoUnidadeFilter';
+import { PontoIndividualTable } from '../../components/TableList/PontoIndividualTable';
 
 interface listagemProps extends ListaProps {
-    list: UnidadePontoProps[];
+    list: UsuarioPontoProps[];
 }
 
-export function PontoUnidades() {
+export function PontoIndividuais() {
 
-    const [unidadePontoList, setUnidadePontoList] = useState<UnidadePontoProps[]>([]);
+    const [usuarioPontoList, setUsuarioPontoList] = useState<UsuarioPontoProps[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [page, setPage] = useState(1);
 
@@ -31,15 +29,15 @@ export function PontoUnidades() {
     // Context
     const { handleLogOut, usuario } = useContext(Context);
 
-    const getPontoUnidades = useCallback(async (orderString?: string, filterString?: string) => {
-        setUnidadePontoList([]);
+    const getPontoUsuario = useCallback(async (orderString?: string, filterString?: string) => {
+        setUsuarioPontoList([]);
         try {
-            const { data } = await api.get<listagemProps>(`/pontounidade?page=${page}${orderString}${filterString}`);
+            const { data } = await api.get<listagemProps>(`/pontoindividual?page=${page}${orderString}${filterString}`);
 
             setPage(Number(data.currentPage));
             setLastPage(data.lastPage);
             setTotalRegister(data.totalRegister);
-            setUnidadePontoList(data.list);
+            setUsuarioPontoList(data.list);
             setIsLoading(true);
         } catch {
             handleLogOut();
@@ -48,36 +46,30 @@ export function PontoUnidades() {
 
 
     useEffect(() => {
-        getPontoUnidades(orderString, filterString);
+        getPontoUsuario(orderString, filterString);
     }, [page, orderString, filterString]);
 
     return (
         <Menubar>
             <div className={`container mx-auto`}>
-
-                <PontoUnidadeFilter
-                    setFilterString={setFilterString}
-                />
-
-                <PontoUnidadeTable
-                    title='Ponto de Unidade'
-                    list={unidadePontoList}
-                    getPontoUnidade={() => getPontoUnidades()}
+                <PontoIndividualTable
+                    title='Ponto de Usuário'
+                    list={usuarioPontoList}
+                    getPontoIndividual={() => getPontoUsuario()}
                     setOrderString={setOrderString}
                 />
-
-                <br />
-
-                <Pagination
-                    initPage={1}
-                    totalPage={lastPage}
-                    page={page}
-                    setPage={setPage}
-                    path={`pontounidades`}
-
-                />
-
             </div>
+
+            <br />
+
+            <Pagination
+                initPage={1}
+                totalPage={lastPage}
+                page={page}
+                setPage={setPage}
+                path={`pontoindividual`}
+            />
         </Menubar>
     );
+
 }
