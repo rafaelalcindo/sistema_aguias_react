@@ -33,6 +33,14 @@ export function SideMenu({ open }: SideMenuProps) {
             </div>
 
             <div className="menuSelection flex flex-row h-14 w-full border-b-2 pl-4 items-center cursor-pointer">
+                <h2 className='text-lg text-2xl text-slate-300' ><Link to={"/unidades"}> Unidades </Link></h2>
+            </div>
+
+            <div className="menuSelection flex flex-row h-14 w-full border-b-2 pl-4 items-center cursor-pointer">
+                <h2 className='text-lg text-2xl text-slate-300' ><Link to={"/pontounidades"}> Pontos de Unidades </Link></h2>
+            </div>
+
+            <div className="menuSelection flex flex-row h-14 w-full border-b-2 pl-4 items-center cursor-pointer">
                 <h2 className='text-lg text-2xl text-slate-300' >Listagem</h2>
             </div>
 

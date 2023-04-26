@@ -4,6 +4,7 @@ import { BrowserRouter, Router } from 'react-router-dom';
 import { Context } from "../context/AuthContext";
 import history from "../services/history";
 import PublicRoute from './PublicRoute';
+import AuthenticatedRoute from './AuthenticatedRoute';
 
 const Routes = () => {
     const { authenticated } = useContext(Context);
@@ -11,7 +12,9 @@ const Routes = () => {
     if (authenticated) {
         return (
             <>
-                <h2>Entrou</h2>
+                <BrowserRouter>
+                    <AuthenticatedRoute />
+                </BrowserRouter>
             </>
         )
     }

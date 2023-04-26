@@ -7,15 +7,18 @@ import PrimaryButton from '../Buttons/PrimaryButton';
 type PainelFormProps = ButtonHTMLAttributes<HTMLAllCollection> & {
     title: string;
     description: string;
+    formName: string;
+    isLoading: boolean;
+    setIsLoading: (state: boolean) => void;
 }
 
 export function PainelForm({
     title,
     description,
+    formName,
+    isLoading,
     children
 }: PainelFormProps) {
-
-    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     return (
         <div className="bg-lightWhite shadow px-4 py-5 sm:rounded-lg sm:p-6">
@@ -42,7 +45,7 @@ export function PainelForm({
                 <div className="w-full md:w-32">
                     <PrimaryButton
                         title="Salvar"
-                        form="userRegisterForm"
+                        form={formName}
                         isLoading={isLoading}
                     />
                 </div>
