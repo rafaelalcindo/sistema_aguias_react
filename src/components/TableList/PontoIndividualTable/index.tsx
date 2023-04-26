@@ -107,7 +107,7 @@ export function PontoIndividualTable({
                             <h2 className={`text-neutral-700`} > {title}</h2>
                         </div>
                         <div className={`buttonAdd`}>
-                            <Link to={"/pontoindividual/add"} className={`text-blue-900`} > Adicionar </Link>
+                            <Link to={"/pontousuarios/add"} className={`text-blue-900`} > Adicionar </Link>
                         </div>
 
                     </div>
