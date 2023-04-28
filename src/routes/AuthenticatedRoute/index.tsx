@@ -16,6 +16,7 @@ import { PontoUnidades } from "../../pages/PontoUnidades";
 import { PontoUnidadeAdd } from "../../pages/PontoUnidades/PontoUnidadeAdd";
 import { PontoIndividuais } from "../../pages/PontoIndividuais";
 import { PontoIndividuaisAdd } from "../../pages/PontoIndividuais/PontoIndividuaisAdd";
+import { Eventos } from "../../pages/Eventos";
 
 
 const AuthenticatedRoute = () => (
@@ -41,6 +42,9 @@ const AuthenticatedRoute = () => (
         <Route path="/pontousuarios" element={<PontoIndividuais />} />
         <Route path="/pontousuarios/add" element={<PontoIndividuaisAdd />} />
         <Route path="/pontousuarios/edit/:id" element={<PontoIndividuaisAdd />} />
+
+        {/* Pontos de Eventos */}
+        <Route path="/eventos" element={<Eventos />} />
 
     </Routes>
 );
