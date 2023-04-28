@@ -11,68 +11,30 @@ import { Context } from '../../../context/AuthContext';
 import { Menubar } from '../../../components/Menubar';
 import { PainelForm } from '../../../components/PainelForm';
 import api from '../../../services/api';
-import { UnidadePontoProps } from '../../../types/UnidadePonto';
+import { UsuarioPontoProps } from '../../../types/UsuarioPonto';
 import { ListaProps } from '../../../types/ListaProps';
-import { UnidadeProps } from '../../../types/Unidade';
+import { UsuarioProps } from '../../../types/Usuario';
 
 interface FormValues {
     pontos: number;
     descricao: string;
     data_pontos: string;
-    unidade_id: number;
+    usuario_id: number;
 }
 
-interface listagemUnidadeProps extends ListaProps {
-    list: UnidadeProps[];
+interface listagemUsuarioProps extends ListaProps {
+    list: UsuarioProps[];
 }
 
-export function PontoUnidadeAdd() {
+export function PontoIndividuaisAdd() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [unidadeList, setUnidadeList] = useState<UnidadeProps[]>([]);
+    const [usuarioList, setUsuarioList] = useState<UsuarioProps[]>([]);
     const [date, setDate] = useState<any>('');
 
     const { handleLogOut, usuario } = useContext(Context);
 
     const navigate = useNavigate();
     const { id } = useParams();
-
-    const getUnidades = useCallback(async () => {
-        try {
-            const { data } = await api.get<listagemUnidadeProps>(`/unidade`);
-            setUnidadeList(data.list);
-        } catch {
-            handleLogOut();
-        }
-    }, []);
-
-
-    async function getPontoUnidade() {
-        await getUnidades();
-        if (id) {
-            const { data } = await api.get<UnidadePontoProps>(`pontounidade/${id}`);
-
-            setValue('pontos', data.pontos);
-            setValue('descricao', data.descricao ? data.descricao : '');
-            setValue('data_pontos', moment(data.data_pontos).utc().format('YYYY-MM-DD'));
-            setDate(moment(data.data_pontos).utc().format('YYYY-MM-DD'));
-            setValue('unidade_id', data.unidade_id);
-        }
-    }
-
-
-    useEffect(() => {
-
-
-        getPontoUnidade();
-
-    }, []);
-
-    const schema = yup.object().shape({
-        pontos: yup.number().required("Campo obrigatório"),
-        descricao: yup.string().required("Campo obrigatório"),
-        data_pontos: yup.string().required("Campo obrigatório"),
-        unidade_id: yup.number().required("Campo obrigatório"),
-    });
 
     const {
         register,
@@ -88,15 +50,50 @@ export function PontoUnidadeAdd() {
         // }
     });
 
+    const getUsuarios = useCallback(async () => {
+        try {
+            const { data } = await api.get<listagemUsuarioProps>(`/usuario?ativo=${1}`);
+
+            setUsuarioList(data.list);
+        } catch {
+            handleLogOut();
+        }
+    }, []);
+
+    async function getPontoUsuario() {
+        await getUsuarios();
+
+        if (id) {
+            const { data } = await api.get<UsuarioPontoProps>(`/pontoindividual/${id}`);
+
+            setValue('pontos', data.pontos);
+            setValue('descricao', data.descricao ? data.descricao : '');
+            setValue('data_pontos', moment(data.data_pontos).utc().format('YYYY-MM-DD'));
+            setDate(moment(data.data_pontos).utc().format('YYYY-MM-DD'));
+            setValue('usuario_id', data.usuario_id);
+        }
+    }
+
+    useEffect(() => {
+        getPontoUsuario();
+    }, []);
+
+    const schema = yup.object().shape({
+        pontos: yup.number().required("Campo obrigatório"),
+        descricao: yup.string().required("Campo obrigatório"),
+        data_pontos: yup.string().required("Campo obrigatório"),
+        usuario_id: yup.number().required("Campo obrigatório"),
+    });
+
     const onSubmit = async (data: FormValues) => {
         setIsLoading(true);
 
-        if (data.unidade_id == 0) {
+        if (data.usuario_id == 0) {
             Swal.fire(
                 {
                     icon: 'error',
                     title: 'Erro',
-                    text: 'Por favor, selecione a unidade'
+                    text: 'Por favor, selecione o desbravador'
                 }
             );
             return
@@ -116,9 +113,9 @@ export function PontoUnidadeAdd() {
             let response;
 
             if (id) {
-                response = await api.put(`pontounidade/update/${id}`, data);
+                response = await api.put(`pontoindividual/update/${id}`, data);
             } else {
-                response = await api.post(`pontounidade/add`, data);
+                response = await api.post(`pontoindividual/add`, data);
             }
 
             if (response.data.status === "Error") {
@@ -134,7 +131,7 @@ export function PontoUnidadeAdd() {
                     text: 'A unidade foi adicionada com sucesso!'
                 });
 
-                navigate('/pontounidades');
+                navigate('/pontousuarios');
             }
 
             setIsLoading(false);
@@ -156,23 +153,25 @@ export function PontoUnidadeAdd() {
                 <PainelForm
                     title='Cadastro de pontos'
                     description='Área de cadastro de pontos de unidade'
-                    formName='unidadePontosRegisterForm'
+                    formName='usuarioPontosRegisterForm'
                     isLoading={isLoading}
                     setIsLoading={setIsLoading}
                 >
+
                     <form
                         action="#"
                         method="POST"
-                        id="unidadePontosRegisterForm"
+                        id="usuarioPontosRegisterForm"
                         onSubmit={handleSubmit(onSubmit)}
                     >
+
                         <div className="grid grid-cols-6 gap-6 p-6">
                             <div className="col-span-6">
                                 <label
                                     htmlFor="pontos"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    pontos da Unidade:
+                                    pontos do Desbravador:
                                 </label>
                                 <input
                                     {...register(`pontos`)}
@@ -182,7 +181,6 @@ export function PontoUnidadeAdd() {
                                     autoComplete="mome"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setValue(`pontos`, Number(e.target.value))
                                     }
                                         // 
@@ -200,7 +198,7 @@ export function PontoUnidadeAdd() {
                                     htmlFor="descricao"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Descrição de Unidade:
+                                    Descrição do ponto:
                                 </label>
                                 <input
                                     {...register(`descricao` as const, {
@@ -224,29 +222,29 @@ export function PontoUnidadeAdd() {
 
                             <div className="col-span-6 sm:col-span-3">
                                 <label
-                                    htmlFor="unidade"
+                                    htmlFor="usuario"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Unidade
+                                    Desbravadores
                                 </label>
                                 <select
-                                    {...register("unidade_id")}
-                                    id="unidade"
-                                    name="unidade"
-                                    autoComplete="unidade"
+                                    {...register("usuario_id")}
+                                    id="usuario"
+                                    name="usuario"
+                                    autoComplete="usuario"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-mainDarkRed focus:border-mainDarkRed sm:text-sm"
                                     onChange={(e) => {
                                         setValue(
-                                            "unidade_id",
+                                            "usuario_id",
                                             Number(e.target.value)
                                         );
                                     }}
                                 >
                                     <option value='' >Selecione</option>
                                     {
-                                        unidadeList ?
-                                            unidadeList.map(unidade => (
-                                                <option key={unidade.id} value={unidade.id} >{unidade.nome}</option>
+                                        usuarioList ?
+                                            usuarioList.map(usuario => (
+                                                <option key={usuario.id} value={usuario.id} >{usuario.nome} {usuario.sobrenome}</option>
                                             )
                                             )
                                             :
@@ -254,9 +252,9 @@ export function PontoUnidadeAdd() {
                                     }
 
                                 </select>
-                                {errors.unidade_id && (
+                                {errors.usuario_id && (
                                     <span className="text-mainDarkRed">
-                                        {errors.unidade_id.message}
+                                        {errors.usuario_id.message}
                                     </span>
                                 )}
                             </div>

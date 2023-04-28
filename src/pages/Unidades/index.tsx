@@ -41,7 +41,6 @@ export function Unidades() {
     const getUnidades = useCallback(async (orderString?: string, filterString?: string) => {
         setUnidadeList([]);
         try {
-            console.log(filterString);
             const { data } = await api.get<listagemProps>(`/unidade?page=${page}${orderString}${filterString}`);
 
             setPage(Number(data.currentPage));

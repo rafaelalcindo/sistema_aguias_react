@@ -8,6 +8,7 @@ import { UsuarioPontoProps } from '../../types/UsuarioPonto';
 import { ListaProps } from '../../types/ListaProps';
 
 import { PontoIndividualTable } from '../../components/TableList/PontoIndividualTable';
+import { PontoUsuarioFilter } from '../../components/Filters/PontoUsuarioFilter';
 
 interface listagemProps extends ListaProps {
     list: UsuarioPontoProps[];
@@ -52,23 +53,29 @@ export function PontoIndividuais() {
     return (
         <Menubar>
             <div className={`container mx-auto`}>
+
+                <PontoUsuarioFilter
+                    setFilterString={setFilterString}
+                />
+
                 <PontoIndividualTable
                     title='Ponto de Usuário'
                     list={usuarioPontoList}
                     getPontoIndividual={() => getPontoUsuario()}
                     setOrderString={setOrderString}
                 />
+
+                <br />
+
+                <Pagination
+                    initPage={1}
+                    totalPage={lastPage}
+                    page={page}
+                    setPage={setPage}
+                    path={`pontoindividual`}
+                />
+
             </div>
-
-            <br />
-
-            <Pagination
-                initPage={1}
-                totalPage={lastPage}
-                page={page}
-                setPage={setPage}
-                path={`pontoindividual`}
-            />
         </Menubar>
     );
 

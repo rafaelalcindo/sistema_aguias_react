@@ -34,7 +34,6 @@ export function UnidadeAdd() {
 
                 setValue("nome", data.data.nome);
                 setValue("equipamentos", data.data.equipamentos);
-                console.log(data);
             }
         }
 
