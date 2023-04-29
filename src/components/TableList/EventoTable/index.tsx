@@ -107,7 +107,7 @@ export function EventoTable({
                             <h2 className={`text-neutral-700`} > {title}</h2>
                         </div>
                         <div className={`buttonAdd`}>
-                            <Link to={"/evento/add"} className={`text-blue-900`} > Adicionar </Link>
+                            <Link to={"/eventos/add"} className={`text-blue-900`} > Adicionar </Link>
                         </div>
 
                     </div>
@@ -206,7 +206,7 @@ export function EventoTable({
                                                         {({ active }) => (
                                                             <a
                                                                 href="#"
-                                                                onClick={() => history.push(`/evento/edit/${item.id}`)}
+                                                                onClick={() => history.push(`/eventos/edit/${item.id}`)}
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                                     'block px-4 py-2 text-sm'
