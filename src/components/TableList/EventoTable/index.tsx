@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import Swal from "sweetalert2";
-import { HiTrash, HiPencil, HiArrowDown, HiArrowUp } from "react-icons/hi";
+import { HiTrash, HiPencil, HiArrowDown, HiArrowUp, HiPlus } from "react-icons/hi";
 
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
@@ -12,6 +12,7 @@ import history from '../../../services/history';
 import { transformDateWithoutTime } from '../../../services/utils/convertDate';
 
 import styles from '../styles.module.scss';
+import { AlertModal } from '../../Modals/AlertModal';
 
 type EventoTable = {
     title: string;
@@ -31,6 +32,7 @@ export function EventoTable({
     setOrderString
 }: EventoTable) {
 
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [orderName, setOrderName] = useState('');
     const [orderDirection, setOrderDirection] = useState('');
 
@@ -52,6 +54,10 @@ export function EventoTable({
 
         setOrderString(buildOrder);
         setOrderName(orderName);
+    }
+
+    async function adicionarUsuarios(eventoId: number) {
+        setIsOpen(true);
     }
 
     async function removeEvento(id: number) {
@@ -100,6 +106,9 @@ export function EventoTable({
 
     return (
         <div className='w-full' >
+
+
+
             <div className="p-2 flex items-center justify-center body">
                 <div className="container">
                     <div className="flex flex-row justify-between text-2xl py-4 px-4 ">
@@ -230,6 +239,20 @@ export function EventoTable({
                                                             </a>
                                                         )}
                                                     </Menu.Item>
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <a
+                                                                href="#"
+                                                                onClick={() => adicionarUsuarios(item.id)}
+                                                                className={classNames(
+                                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                    'block px-4 py-2 text-sm'
+                                                                )}
+                                                            >
+                                                                <span className='flex flex-row text-blue-600'> <HiPlus className='mt-1 ' /> &nbsp; Adicionar Desbravadores</span>
+                                                            </a>
+                                                        )}
+                                                    </Menu.Item>
 
 
                                                 </div>
@@ -243,6 +266,21 @@ export function EventoTable({
                     }
                 </tbody>
             </table>
+
+            <AlertModal
+                title='Adicionar Desbravadores'
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+            >
+                <div className="mt-2">
+                    <p className="text-sm text-gray-500">
+                        Your payment has been successfully submitted. We’ve sent
+                        you an email with all of the details of your order.
+                    </p>
+
+
+                </div>
+            </AlertModal>
         </div>
     );
 }
