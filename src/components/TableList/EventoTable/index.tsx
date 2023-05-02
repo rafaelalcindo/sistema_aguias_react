@@ -13,6 +13,7 @@ import { transformDateWithoutTime } from '../../../services/utils/convertDate';
 
 import styles from '../styles.module.scss';
 import { AlertModal } from '../../Modals/AlertModal';
+import { CheckListSelectEventos } from '../../CheckListSelect/CheckListSelectEventos';
 
 type EventoTable = {
     title: string;
@@ -273,10 +274,7 @@ export function EventoTable({
                 setIsOpen={setIsOpen}
             >
                 <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                        Your payment has been successfully submitted. We’ve sent
-                        you an email with all of the details of your order.
-                    </p>
+                    <CheckListSelectEventos />
 
 
                 </div>
