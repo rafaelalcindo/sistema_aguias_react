@@ -37,6 +37,8 @@ export function EventoTable({
     const [orderName, setOrderName] = useState('');
     const [orderDirection, setOrderDirection] = useState('');
 
+    const [eventoSelected, setEventoSelected] = useState<number>();
+
     async function organizeDirection(orderName: string) {
         let orderFlow = '';
 
@@ -58,6 +60,7 @@ export function EventoTable({
     }
 
     async function adicionarUsuarios(eventoId: number) {
+        setEventoSelected(eventoId);
         setIsOpen(true);
     }
 
@@ -274,7 +277,9 @@ export function EventoTable({
                 setIsOpen={setIsOpen}
             >
                 <div className="mt-2">
-                    <CheckListSelectEventos />
+                    <CheckListSelectEventos
+                        eventoId={eventoSelected}
+                    />
 
 
                 </div>
