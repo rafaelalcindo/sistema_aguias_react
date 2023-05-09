@@ -10,6 +10,7 @@ import styles from './styles.module.scss';
 import { Context } from '../../../context/AuthContext';
 import Swal from 'sweetalert2';
 import { object } from 'yup';
+import { EventoDbvTable } from '../../TableList/EventoDbvTable';
 
 
 interface CheckListSelectEventos {
@@ -92,6 +93,8 @@ export function CheckListSelectEventos(
                 });
 
                 setUsuariosRecebePontos([]);
+
+                getUsuarios();
             }
 
 
@@ -337,8 +340,10 @@ export function CheckListSelectEventos(
                 </button>
             </div>
             <br />
-            <div className="mt-4 flex flex-row justify-between w-full">
-
+            <div className={`${(dbvEventos.length > 0) ? styles.little_table : ''} mt-4 flex flex-row justify-between w-full`}>
+                <EventoDbvTable
+                    list={dbvEventos}
+                />
 
             </div>
         </div>
