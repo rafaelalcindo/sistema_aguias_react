@@ -44,10 +44,10 @@ export function EventoDbvTable(
                         list &&
                         list.map((item, index) => (
                             <tr key={index} className={`flex flex-col flex-no wrap lg:table-row mb-5 sm:mb-0 line ${styles.lineRow}`}>
-                                <td className="p-1 h-1/6 text-xs sm:text-base">
+                                <td className="text-sm ">
                                     {item.usuario?.nome} {item.usuario?.sobrenome}
                                 </td>
-                                <td className="p-1 h-1/6 text-xs sm:text-base">
+                                <td className="text-sm">
                                     {transformDateWithoutTime(item.created_at)}
                                 </td>
                             </tr>
