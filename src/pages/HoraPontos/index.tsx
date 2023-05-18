@@ -7,6 +7,7 @@ import { Pagination } from '../../components/Pagination';
 import { HoraPontoProps } from '../../types/HoraPontoProps';
 import { ListaProps } from '../../types/ListaProps';
 import { HoraPontoTable } from '../../components/TableList/HoraPontoTable';
+import { HoraPontoFilter } from '../../components/Filters/HoraPontoFilter';
 
 interface listagemProps extends ListaProps {
     list: HoraPontoProps[];
@@ -51,7 +52,9 @@ export function HoraPontos() {
         <Menubar>
             <div className={`container mx-auto`}>
 
-
+                <HoraPontoFilter
+                    setFilterString={setFilterString}
+                />
 
                 <HoraPontoTable
                     title='Horas de chegada'
