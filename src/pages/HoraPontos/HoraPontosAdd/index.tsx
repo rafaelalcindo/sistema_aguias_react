@@ -12,20 +12,19 @@ import { Menubar } from '../../../components/Menubar';
 import { PainelForm } from '../../../components/PainelForm';
 import api from '../../../services/api';
 
-import { EventoProps } from '../../../types/EventoProps';
+import { HoraPontoProps } from '../../../types/HoraPontoProps';
 import { ListaProps } from '../../../types/ListaProps';
 
 interface FormValues {
-    titulo: string;
     descricao: string;
-    data_evento: string;
-    ponto_evento: number;
+    data_programacao: string;
+    hora_programacao: string;
+    pontos: number;
 }
 
-export function EventosAdd() {
+export function HoraPontosAdd() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [eventoList, setEventoList] = useState<EventoProps[]>([]);
-    const [date, setDate] = useState<any>('');
+    const [date, setDate] = useState('');
 
     const { handleLogOut, usuario } = useContext(Context);
 
@@ -46,33 +45,33 @@ export function EventosAdd() {
         // }
     });
 
-    async function getEvento() {
+    async function getHoraPonto() {
         if (id) {
-            const { data } = await api.get<EventoProps>(`/evento/${id}`);
+            const { data } = await api.get<HoraPontoProps>(`/horaponto/${id}`);
 
-            setValue('titulo', data.titulo);
             setValue('descricao', data.descricao);
-            setValue('data_evento', moment(data.data_evento).utc().format('YYYY-MM-DD'));
-            setDate(moment(data.data_evento).utc().format('YYYY-MM-DD'));
-            setValue('ponto_evento', data.ponto_evento);
+            setValue('data_programacao', moment(data.data_programacao).utc().format('YYYY-MM-DD'));
+            setDate(moment(data.data_programacao).utc().format('YYYY-MM-DD'));
+            setValue('hora_programacao', data.hora_programacao);
+            setValue('pontos', data.pontos);
         }
     }
 
     useEffect(() => {
-        getEvento();
+        getHoraPonto();
     }, []);
 
     const schema = yup.object().shape({
-        titulo: yup.number().required("Campo obrigatório"),
-        descricao: yup.string().required("Campo obrigatório"),
-        data_evento: yup.string().required("Campo obrigatório"),
-        ponto_evento: yup.number().required("Campo obrigatório"),
+        descricao: yup.number().required("Campo obrigatório"),
+        data_programacao: yup.string().required("Campo obrigatório"),
+        hora_programacao: yup.string().required("Campo obrigatório"),
+        pontos: yup.number().required("Campo obrigatório"),
     });
 
     const onSubmit = async (data: FormValues) => {
         setIsLoading(true);
 
-        if (data.data_evento == '') {
+        if (data.data_programacao == '') {
             Swal.fire(
                 {
                     icon: 'error',
@@ -87,9 +86,9 @@ export function EventosAdd() {
             let response;
 
             if (id) {
-                response = await api.put(`evento/update/${id}`, data);
+                response = await api.put(`horaponto/update/${id}`, data);
             } else {
-                response = await api.post('evento/add', data);
+                response = await api.post(`horaponto/add`, data);
             }
 
             if (response.data.status === "Error") {
@@ -101,11 +100,11 @@ export function EventosAdd() {
             } else {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Unidade cadastrada',
-                    text: 'A unidade foi adicionada com sucesso!'
+                    title: 'Data e a Hora foram cadastrada',
+                    text: 'A data e a hora foi adicionada com sucesso!'
                 });
 
-                navigate('/eventos');
+                navigate('/horaponto');
             }
 
             setIsLoading(false);
@@ -125,64 +124,36 @@ export function EventosAdd() {
             <div className={`container mx-auto pt-8`}>
                 <PainelForm
                     title='Cadastro de eventos'
-                    description='Área de cadastro de eventos'
-                    formName='eventoRegisterForm'
+                    description='Área de cadastro de horas e pontos'
+                    formName='horaPontoRegisterForm'
                     isLoading={isLoading}
                     setIsLoading={setIsLoading}
                 >
                     <form
                         action="#"
                         method="POST"
-                        id="eventoRegisterForm"
+                        id="horaPontoRegisterForm"
                         onSubmit={handleSubmit(onSubmit)}
                     >
-
                         <div className="grid grid-cols-6 gap-6 p-6">
                             <div className="col-span-6">
                                 <label
                                     htmlFor="titulo"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    titulo do Desbravador:
+                                    Descrição:
                                 </label>
                                 <input
-                                    {...register(`titulo`)}
-                                    type="text"
-                                    name="titulo"
-                                    id="titulo"
-                                    autoComplete="mome"
-                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
-                                    onChange={(e) => {
-                                        setValue(`titulo`, e.target.value)
-                                    }
-                                        // 
-                                    }
-                                />
-                                <span className="text-mainDarkRed">
-                                    {errors?.titulo
-                                        ? "Campo obrigatório"
-                                        : ""}
-                                </span>
-                            </div>
-
-                            <div className="col-span-6">
-                                <label
-                                    htmlFor="descricao"
-                                    className="block text-sm font-medium text-gray-700"
-                                >
-                                    Descrição do ponto:
-                                </label>
-                                <input
-                                    {...register(`descricao` as const, {
-                                        required: true,
-                                    })}
+                                    {...register(`descricao`)}
                                     type="text"
                                     name="descricao"
                                     id="descricao"
-                                    autoComplete="Descrição"
+                                    autoComplete="mome"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
-                                    onChange={(e) =>
+                                    onChange={(e) => {
                                         setValue(`descricao`, e.target.value)
+                                    }
+                                        // 
                                     }
                                 />
                                 <span className="text-mainDarkRed">
@@ -197,65 +168,94 @@ export function EventosAdd() {
                                     htmlFor="date_call"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Data do evento
+                                    Data:
                                 </label>
                                 <input
-                                    {...register("data_evento")}
+                                    {...register("data_programacao")}
                                     type="date"
-                                    name="data_evento"
-                                    id="data_evento"
+                                    name="data_programacao"
+                                    id="data_programacao"
                                     // min={new Date().toISOString().split('T')[0]}
                                     autoComplete="given-date"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-mainDarkRed focus:border-mainDarkRed sm:text-sm"
                                     onChange={(e) => {
 
                                         setValue(
-                                            "data_evento",
+                                            "data_programacao",
                                             e.target.value
                                         );
                                         setDate(e.target.value);
                                     }}
                                     value={date}
                                 />
-                                {errors.data_evento && (
+                                {errors.data_programacao && (
                                     <span className="text-mainDarkRed">
-                                        {errors.data_evento.message}
+                                        {errors.data_programacao.message}
+                                    </span>
+                                )}
+                            </div>
+
+                            <div className="col-span-6 sm:col-span-3">
+                                <label
+                                    htmlFor="date_call"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Hora:
+                                </label>
+                                <input
+                                    {...register("hora_programacao")}
+                                    type="time"
+                                    name="hora_programacao"
+                                    id="hora_programacao"
+                                    // min={new Date().toISOString().split('T')[0]}
+                                    autoComplete="given-date"
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-mainDarkRed focus:border-mainDarkRed sm:text-sm"
+                                    onChange={(e) => {
+
+                                        setValue(
+                                            "hora_programacao",
+                                            e.target.value
+                                        );
+                                    }}
+                                />
+                                {errors.hora_programacao && (
+                                    <span className="text-mainDarkRed">
+                                        {errors.hora_programacao.message}
                                     </span>
                                 )}
                             </div>
 
                             <div className="col-span-6">
                                 <label
-                                    htmlFor="ponto_evento"
+                                    htmlFor="pontos"
                                     className="block text-sm font-medium text-gray-700"
                                 >
                                     Pontos:
                                 </label>
                                 <input
-                                    {...register(`ponto_evento`)}
+                                    {...register(`pontos`)}
                                     type="number"
-                                    name="ponto_evento"
-                                    id="ponto_evento"
+                                    name="pontos"
+                                    id="pontos"
                                     autoComplete="mome"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        setValue(`ponto_evento`, Number(e.target.value))
+                                        setValue(`pontos`, Number(e.target.value))
                                     }
                                         // 
                                     }
                                 />
                                 <span className="text-mainDarkRed">
-                                    {errors?.ponto_evento
+                                    {errors?.pontos
                                         ? "Campo obrigatório"
                                         : ""}
                                 </span>
                             </div>
                         </div>
-
                     </form>
-
                 </PainelForm>
             </div>
         </Menubar>
     );
+
 }

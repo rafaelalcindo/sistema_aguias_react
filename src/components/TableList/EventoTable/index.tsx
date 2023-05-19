@@ -64,7 +64,7 @@ export function EventoTable({
         setIsOpen(true);
     }
 
-    async function removeEvento(id: number) {
+    async function removeHoraPonto(id: number) {
         Swal.fire({
             title: 'Tem certeza?',
             text: "Deseja deletar a ponto do usuário?",
@@ -77,7 +77,7 @@ export function EventoTable({
         }).then(async (result) => {
 
             if (result.isConfirmed) {
-                await api.delete(`evento/delete/${id}`);
+                await api.delete(`horaponto/delete/${id}`);
                 Swal.fire(
                     'Deletado',
                     'O evento foi removida com sucesso!.',
@@ -219,7 +219,7 @@ export function EventoTable({
                                                         {({ active }) => (
                                                             <a
                                                                 href="#"
-                                                                onClick={() => history.push(`/eventos/edit/${item.id}`)}
+                                                                onClick={() => history.push(`/horaponto/edit/${item.id}`)}
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                                     'block px-4 py-2 text-sm'
@@ -233,7 +233,7 @@ export function EventoTable({
                                                         {({ active }) => (
                                                             <a
                                                                 href="#"
-                                                                onClick={() => removeEvento(item.id)}
+                                                                onClick={() => removeHoraPonto(item.id)}
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                                     'block px-4 py-2 text-sm'
