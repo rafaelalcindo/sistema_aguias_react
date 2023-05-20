@@ -14,6 +14,7 @@ import { transformDateWithoutTime } from '../../../services/utils/convertDate';
 import styles from '../styles.module.scss';
 import { AlertModal } from '../../Modals/AlertModal';
 import { CheckListSelectEventos } from '../../CheckListSelect/CheckListSelectEventos';
+import { CheckListSelectHoraPontos } from '../../CheckListSelect/CheckListSelectHoraPontos';
 
 type HoraPontoTable = {
     title: string;
@@ -36,6 +37,8 @@ export function HoraPontoTable({
     const [orderName, setOrderName] = useState('');
     const [orderDirection, setOrderDirection] = useState('');
 
+    const [horaPontoSelected, setHoraPontoSelected] = useState<number>();
+
     async function organizeDirection(orderName: string) {
         let orderFlow = '';
 
@@ -57,7 +60,9 @@ export function HoraPontoTable({
     }
 
     async function adicionarUsuarios(horaPontoId: number) {
-        console.log(horaPontoId);
+        setHoraPontoSelected(horaPontoId);
+        setIsOpen(true);
+
     }
 
     async function removeHoraPonto(id: number) {
@@ -266,7 +271,17 @@ export function HoraPontoTable({
                     }
                 </tbody>
             </table>
-
+            <AlertModal
+                title='Adicionar Desbravadores'
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+            >
+                <div className='mt-2' >
+                    <CheckListSelectHoraPontos
+                        horaPontoId={horaPontoSelected}
+                    />
+                </div>
+            </AlertModal>
         </div>
     );
 }

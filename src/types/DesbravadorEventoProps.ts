@@ -6,7 +6,7 @@ export interface DesbravadorEventoProps {
     usuario_id: number;
     evento_id: number;
     usuario?: UsuarioProps;
-    eventow?: EventoProps;
+    evento?: EventoProps;
     created_at?: Date;
     updated_at?: Date;
 }
