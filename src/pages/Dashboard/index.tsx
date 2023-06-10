@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 
+import { Context } from '../../context/AuthContext';
 import * as yup from 'yup';
 import aguias from '../../assets/aguias.png';
 import fotoTodos from '../../assets/foto_aguias.jpeg';
@@ -18,11 +19,47 @@ import {
     Hint
 } from 'react-vis';
 import { Value } from 'sass';
+import api from '../../services/api';
+
+type DashboardBarProps = {
+    nome: string;
+    sobrenome: string;
+    pontos: number;
+}
 
 export function Dashboard() {
 
     // const [unidadeChart, setUnidadeChart] = useState<string>();
+    const { handleLogOut, usuario } = useContext(Context);
 
+    const [dashboardBar, SetDashboardBar] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [page, setPage] = useState(1);
+
+    const getDashboardBar = useCallback(async () => {
+        try {
+            const { data } = await api.get<DashboardBarProps[]>(`/dashboard/dashboradbar`);
+
+            const dadosGrafico = data.map((valor, index) => {
+                const dadosProGrafico = {
+                    x: `${valor.nome} ${valor.sobrenome}`,
+                    y: valor.pontos,
+                    color: index
+                }
+
+                return dadosProGrafico;
+            });
+
+            SetDashboardBar(dadosGrafico);
+
+        } catch {
+            handleLogOut();
+        }
+    }, []);
+
+    useEffect(() => {
+        getDashboardBar();
+    }, []);
 
     return (
         <>
@@ -42,7 +79,7 @@ export function Dashboard() {
                                 tickLabelAngle={-10}
                                 style={
                                     {
-                                        fontSize: 15,
+                                        fontSize: 9,
                                         fontWeight: 'bold'
                                     }
                                 }
@@ -58,15 +95,16 @@ export function Dashboard() {
                             />
                             <VerticalBarSeries
                                 barWidth={0.3}
-                                data={[
-                                    { x: 'Apples', y: 10, color: 1 },
-                                    { x: 'Bananas', y: 5, color: 2 },
-                                    { x: 'Cranberries', y: 15, color: 3 },
-                                    { x: 'Leis', y: 54, color: 4 },
-                                    { x: 'Trunks', y: 32, color: 5 },
-                                    { x: 'vegeneddx', y: 43, color: 6 },
-                                    { x: 'vegened', y: 23, color: 7 },
-                                ]}
+                                // data={[
+                                //     { x: 'Apples', y: 10, color: 1 },
+                                //     { x: 'Bananas', y: 5, color: 2 },
+                                //     { x: 'Cranberries', y: 15, color: 3 },
+                                //     { x: 'Leis', y: 54, color: 4 },
+                                //     { x: 'Trunks', y: 32, color: 5 },
+                                //     { x: 'vegeneddx', y: 43, color: 6 },
+                                //     { x: 'vegened', y: 23, color: 7 },
+                                // ]}
+                                data={dashboardBar}
                                 colorRange={['#d41515', '#2596be', '#3d5760']}
                             />
 
