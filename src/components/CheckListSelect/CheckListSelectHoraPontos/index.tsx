@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState, Fragment } from 'react';
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import moment from 'moment';
 
 import api from '../../../services/api';
 
@@ -67,8 +68,6 @@ export function CheckListSelectHoraPontos(
             const { data } = await api.get<listagemUsuarioProps>(`/usuario?ativo=${1}`);
             const responseDbvHoraPonto = await api.get<listagemDbvHoraPontoProps>(`/desbravadorhoraponto?hora_ponto_id=${horaPontoId}`);
 
-            console.log(responseDbvHoraPonto);
-
             let usuarioList = data.list;
             let dbvHoraPonto = responseDbvHoraPonto.data.list;
 
@@ -90,9 +89,33 @@ export function CheckListSelectHoraPontos(
         getUsuarios();
     }, [horaPontoId]);
 
-    function adicionarDesbravador(usuarioSelected?: UsuarioProps, horaPontoId?: number) {
-        console.log('Usuario: ', usuarioSelected);
-        console.log('Hora Ponto: ', horaPontoId);
+    async function adicionarDesbravador(usuarioSelected?: UsuarioProps, horaPontoId?: number) {
+
+        const data_chegada = moment().format('YYYY-MM-DD HH:mm:ss');
+
+        const dataInsert = {
+            usuario_id: usuarioSelected?.id,
+            hora_ponto_id: horaPontoId,
+            data_chegada: data_chegada
+        }
+
+        const resuAddData = await api.post(`/desbravadorhoraponto/adicionarhoraponto`, dataInsert);
+
+        if (resuAddData.data.status === "Error") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Tivemos um problema',
+                text: 'Não conseguimos realizar a ação de adicionar hora e data'
+            });
+        } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Data e a Hora foram adicionadas',
+                text: 'A data e a hora foi adicionada com sucesso!'
+            });
+
+            getUsuarios();
+        }
     }
 
     return (
@@ -172,7 +195,7 @@ export function CheckListSelectHoraPontos(
                 </button>
             </div>
 
-            <div className=" w-full mt-20 flex flex-column">
+            <div className=" w-full mt-20 flex flex-column overflow-y-scroll">
                 <HoraPontoIndividualTable
                     title='Lista de adicionados'
                     list={dbvHoraPontos}

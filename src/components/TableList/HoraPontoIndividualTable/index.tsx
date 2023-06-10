@@ -105,13 +105,15 @@ export function HoraPontoIndividualTable(
                         list &&
                         list.map((item, index) => (
                             <tr key={index} className={`flex flex-col flex-no wrap lg:table-row mb-5 sm:mb-0 line ${styles.lineRow}`}>
-                                <td className="p-3 h-1/6 text-xs sm:text-base">
-                                    {item.usuario?.nome} {item.usuario?.sobrenome}
+                                <td className="">
+                                    <p className='p-2 text-xs' >{item.usuario?.nome} {item.usuario?.sobrenome}</p>
                                 </td>
 
-                                <td className="p-3 h-1/6 text-xs sm:text-base">
-                                    {transformDateWithoutTime(item.data_chegada)}&nbsp;
-                                    {item.hora_chegada}
+                                <td className="">
+                                    <p className='p-2 text-xs' >
+                                        {transformDateWithoutTime(item.data_chegada)}&nbsp;
+                                        {item.hora_chegada}
+                                    </p>
                                 </td>
                             </tr>
                         ))
