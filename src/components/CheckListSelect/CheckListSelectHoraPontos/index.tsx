@@ -47,7 +47,7 @@ export function CheckListSelectHoraPontos(
 
     const { handleLogOut, usuario } = useContext(Context);
 
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState<UsuarioProps>();
     const [query, setQuery] = useState('');
 
 
@@ -89,6 +89,11 @@ export function CheckListSelectHoraPontos(
     useEffect(() => {
         getUsuarios();
     }, [horaPontoId]);
+
+    function adicionarDesbravador(usuarioSelected?: UsuarioProps, horaPontoId?: number) {
+        console.log('Usuario: ', usuarioSelected);
+        console.log('Hora Ponto: ', horaPontoId);
+    }
 
     return (
         <div>
@@ -161,7 +166,7 @@ export function CheckListSelectHoraPontos(
                 <button
                     type="button"
                     className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-
+                    onClick={() => adicionarDesbravador(selected, horaPontoId)}
                 >
                     add
                 </button>
