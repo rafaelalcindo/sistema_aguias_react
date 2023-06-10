@@ -13,6 +13,7 @@ import { Context } from '../../../context/AuthContext';
 import Swal from 'sweetalert2';
 import { object } from 'yup';
 import { UsuarioProps } from '../../../types/Usuario';
+import { HoraPontoIndividualTable } from '../../TableList/HoraPontoIndividualTable';
 
 interface CheckListSelectHoraPonto {
     horaPontoId?: number;
@@ -46,8 +47,9 @@ export function CheckListSelectHoraPontos(
 
     const { handleLogOut, usuario } = useContext(Context);
 
-    const [selected, setSelected] = useState(people[0])
-    const [query, setQuery] = useState('')
+    const [selected, setSelected] = useState(null);
+    const [query, setQuery] = useState('');
+
 
     const filteredPeople =
         query === ''
@@ -65,11 +67,13 @@ export function CheckListSelectHoraPontos(
             const { data } = await api.get<listagemUsuarioProps>(`/usuario?ativo=${1}`);
             const responseDbvHoraPonto = await api.get<listagemDbvHoraPontoProps>(`/desbravadorhoraponto?hora_ponto_id=${horaPontoId}`);
 
+            console.log(responseDbvHoraPonto);
+
             let usuarioList = data.list;
             let dbvHoraPonto = responseDbvHoraPonto.data.list;
 
             const usuarioAtuais = usuarioList.filter(usuario => {
-                let filterResu = dbvHoraPonto.find(dbvHora => ((Number(dbvHora.usuario_id) == Number(usuario.id)) ? true : false));
+                let filterResu = dbvHoraPonto.find(dbvHora => ((Number(dbvHora.usuario?.id) == Number(usuario.id)) ? true : false));
 
                 return (filterResu == undefined);
             });
@@ -88,13 +92,13 @@ export function CheckListSelectHoraPontos(
 
     return (
         <div>
-            <div className="fixed top-16 w-72 ">
+            <div className="fixed top-16 w-full flex flex-row">
                 <Combobox value={selected} onChange={setSelected}>
                     <div className="relative mt-1">
                         <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                             <Combobox.Input
                                 className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-                                displayValue={(person: any) => person.name}
+                                displayValue={(person: any) => person ? person.nome + ' ' + person.sobrenome : ''}
                                 onChange={(event) => setQuery(event.target.value)}
                             />
                             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -112,12 +116,12 @@ export function CheckListSelectHoraPontos(
                             afterLeave={() => setQuery('')}
                         >
                             <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {filteredPeople.length === 0 && query !== '' ? (
+                                {usuarios.length === 0 && query !== '' ? (
                                     <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                                         Nothing found.
                                     </div>
                                 ) : (
-                                    filteredPeople.map((person) => (
+                                    usuarios.map((person) => (
                                         <Combobox.Option
                                             key={person.id}
                                             className={({ active }) =>
@@ -132,7 +136,7 @@ export function CheckListSelectHoraPontos(
                                                         className={`block truncate ${selected ? 'font-medium' : 'font-normal'
                                                             }`}
                                                     >
-                                                        {person.name}
+                                                        {person.nome} {person.sobrenome}
                                                     </span>
                                                     {selected ? (
                                                         <span
@@ -151,6 +155,23 @@ export function CheckListSelectHoraPontos(
                         </Transition>
                     </div>
                 </Combobox>
+
+                &nbsp;&nbsp;
+
+                <button
+                    type="button"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+
+                >
+                    add
+                </button>
+            </div>
+
+            <div className=" w-full mt-20 flex flex-column">
+                <HoraPontoIndividualTable
+                    title='Lista de adicionados'
+                    list={dbvHoraPontos}
+                />
             </div>
         </div>
     );
