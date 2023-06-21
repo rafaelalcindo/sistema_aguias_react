@@ -18,7 +18,8 @@ export function SideMenu({ open }: SideMenuProps) {
 
     return (
         <motion.div
-            className="flex flex-col bg-darkLightBlue w-1/5 h-full px-2"
+            // className="flex flex-col bg-darkLightBlue w-1/5 h-full px-2"
+            className="flex flex-col bg-darkLightBlue w-1/5 px-2"
             initial={initial}
             animate={animete}
             transition={{ duration: 0.3, ease: "linear" }}

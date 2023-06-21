@@ -20,10 +20,17 @@ import {
 } from 'react-vis';
 import { Value } from 'sass';
 import api from '../../services/api';
+import { DashboardUser } from '../../components/TableList/DashboardTable/DashboardUser';
+import { DashboardUnidade } from '../../components/TableList/DashboardTable/DashboardUnidade';
 
 type DashboardBarProps = {
     nome: string;
     sobrenome: string;
+    pontos: number;
+}
+
+type DashboardCircleProps = {
+    nome: string;
     pontos: number;
 }
 
@@ -32,7 +39,10 @@ export function Dashboard() {
     // const [unidadeChart, setUnidadeChart] = useState<string>();
     const { handleLogOut, usuario } = useContext(Context);
 
+    const [desbravadorLista, SetDesbravadorLista] = useState<DashboardBarProps[]>([]);
+    const [unidadeList, SetUnidadeList] = useState<DashboardCircleProps[]>([]);
     const [dashboardBar, SetDashboardBar] = useState<any[]>([]);
+    const [dashboardCircle, SetDashboardCircle] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [page, setPage] = useState(1);
 
@@ -50,6 +60,7 @@ export function Dashboard() {
                 return dadosProGrafico;
             });
 
+            SetDesbravadorLista(data);
             SetDashboardBar(dadosGrafico);
 
         } catch {
@@ -57,8 +68,30 @@ export function Dashboard() {
         }
     }, []);
 
+    const getDashboardCircle = useCallback(async () => {
+        try {
+            const { data } = await api.get<DashboardCircleProps[]>(`/dashboard/dashboardcircle`);
+
+            const dadosGraficoCircle = data.map((valor, index) => {
+                const dadosProGrafico = {
+                    angle: valor.pontos,
+                    label: valor.nome,
+                    radius: index
+                }
+
+                return dadosProGrafico;
+            });
+
+            SetUnidadeList(data);
+            SetDashboardCircle(dadosGraficoCircle);
+        } catch {
+            handleLogOut();
+        }
+    }, []);
+
     useEffect(() => {
         getDashboardBar();
+        getDashboardCircle();
     }, []);
 
     return (
@@ -116,14 +149,15 @@ export function Dashboard() {
                         <div className={`graphicUnidades  ${styles.areaBox}`}>
                             <h3 className={`text-5xl font-bold`} >Unidades</h3>
                             <RadialChart
-                                data={
-                                    [
-                                        { angle: 2, label: 'águia de fogo', radius: 3 },
-                                        { angle: 3, label: 'águia dourada', radius: 3 },
-                                        { angle: 4, label: 'águia americana', radius: 4 },
-                                        { angle: 5, label: 'águia real', radius: 5 }
-                                    ]
-                                }
+                                data={dashboardCircle}
+                                // data={
+                                //     [
+                                //         { angle: 2, label: 'águia de fogo', radius: 3 },
+                                //         { angle: 3, label: 'águia dourada', radius: 3 },
+                                //         { angle: 4, label: 'águia americana', radius: 4 },
+                                //         { angle: 5, label: 'águia real', radius: 5 }
+                                //     ]
+                                // }
                                 width={500}
                                 height={500}
                                 onValueMouseOver={v => {
@@ -139,8 +173,18 @@ export function Dashboard() {
                             </RadialChart>
                         </div>
 
-                        <div className={`graphicEspecialista`} >
+                        <div className={`graphicEspecialista ${styles.areaBox} ${styles.listaDesbravador}`} >
+                            <DashboardUser
+                                title='Lista de Desbravadores'
+                                list={desbravadorLista}
+                            />
+                        </div>
 
+                        <div className={`graphicEspecialista ${styles.areaBox} ${styles.listaUnidade}`} >
+                            <DashboardUnidade
+                                title='Lista de Unidades'
+                                list={unidadeList}
+                            />
                         </div>
                     </div>
 

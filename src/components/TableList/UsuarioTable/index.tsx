@@ -1,4 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import Swal from "sweetalert2";
+import { HiTrash, HiPencil, HiArrowDown, HiArrowUp } from "react-icons/hi";
+
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
@@ -8,15 +11,61 @@ import { UsuarioProps } from '../../../types/Usuario';
 type UsuarioTable = {
     title: string;
     list?: UsuarioProps[];
+    getUsuarios: () => Promise<void>;
+    setOrderString: (order: string) => void;
 }
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
 }
 
-export function UsuarioTable({ title, list }: UsuarioTable) {
+export function UsuarioTable({ title, list, getUsuarios, setOrderString }: UsuarioTable) {
 
+    const [orderName, setOrderName] = useState('');
+    const [orderDirection, setOrderDirection] = useState('');
 
+    async function organizeDirection(orderName: string) {
+
+        let orderFlow = '';
+
+        if (orderDirection == '') {
+            setOrderDirection('DESC');
+            orderFlow = 'DESC';
+        } else if (orderDirection == 'DESC') {
+            setOrderDirection('ASC');
+            orderFlow = 'ASC';
+        } else {
+            setOrderDirection('');
+            orderFlow = '';
+        }
+
+        let buildOrder = `&orderName=${orderName}&orderDirection=${orderFlow}`;
+
+        setOrderString(buildOrder);
+        setOrderName(orderName);
+
+    }
+
+    function arrowDirection(orderNameParam: string) {
+
+        let arrowDirection;
+
+        if (orderName == orderNameParam) {
+            if (orderDirection == 'DESC') {
+                arrowDirection = <HiArrowUp />;
+            } else if (orderDirection == 'ASC') {
+                arrowDirection = <HiArrowDown />;
+            } else {
+                arrowDirection = '';
+            }
+        }
+
+        return (
+            <div>
+                {arrowDirection}
+            </div>
+        );
+    }
 
     return (
         <div className="w-full">

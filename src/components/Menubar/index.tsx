@@ -69,7 +69,8 @@ export function Menubar({ children }: MenuBarProps) {
 
                 </div>
 
-                <div className='flex flex-row h-full' >
+                {/* <div className='flex flex-row h-full' > */}
+                <div className='flex flex-row' >
                     <SideMenu
                         open={openMenu}
                     />
