@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
+import { handleChangeMask } from '../../../services/utils/mask';
+import { addressByCep } from '../../../services/utils/getAddressByCep';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
@@ -21,7 +23,9 @@ interface RegistrationProps {
     password: string;
     cep?: string;
     endereco?: string;
+    numero?: string;
     complemento?: string;
+    bairro?: string;
     cidade?: string;
     estado?: string;
     tel?: string;
@@ -42,6 +46,9 @@ export function UsuarioAdd() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [unidadeList, setUnidadeList] = useState<UnidadeProps[]>([]);
+    const [cep, setCep] = useState<string>("");
+    const [tel, setTel] = useState<string>("");
+    const [cel, setCel] = useState<string>("");
 
     const { handleLogOut, usuario } = useContext(Context);
 
@@ -73,7 +80,9 @@ export function UsuarioAdd() {
 
         cep: yup.string().required("Campo Obrigatório"),
         endereco: yup.string().required("Campo Obrigatório"),
+        numero: yup.string().required("Campo Obrigatório"),
         complemento: yup.string().required("Campo Obrigatório"),
+        bairro: yup.string().required("Campo Obrigatório"),
         cidade: yup.string().required("Campo Obrigatório"),
         estado: yup.string().required("Campo Obrigatório"),
 
@@ -141,6 +150,21 @@ export function UsuarioAdd() {
         console.log(data);
     }
 
+    async function completeAddress(cep: string) {
+        if (cep.length == 9) {
+            let cepSearch = cep.replace('-', '');
+            const address = await addressByCep(cepSearch);
+
+            if (address.logradouro) {
+                setValue('endereco', address.logradouro);
+                setValue('bairro', address.bairro);
+                setValue('complemento', address.complemento);
+                setValue('cidade', address.localidade);
+                setValue('estado', address.uf);
+            }
+        }
+    }
+
     return (
         <Menubar>
             <div className={`container mx-auto pt-8`}>
@@ -155,7 +179,7 @@ export function UsuarioAdd() {
                     <form
                         action="#"
                         method="POST"
-                        id="usuarioRegisterForm"
+                        id="userForm"
                         onSubmit={handleSubmit(onSubmit)}
                     >
 
@@ -287,8 +311,18 @@ export function UsuarioAdd() {
                                     autoComplete="cep"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        console.log(e.target.value)
-                                        setValue(`cep`, e.target.value)
+                                        console.log(e.target.value);
+                                        const formated = handleChangeMask(
+                                            e.target.value,
+                                            "cep"
+                                        );
+                                        setCep(formated);
+                                        setValue(
+                                            `cep`,
+                                            e.target.value
+                                        );
+                                        e.target.value = formated;
+                                        completeAddress(formated);
                                     }
                                         // 
                                     }
@@ -344,7 +378,7 @@ export function UsuarioAdd() {
                                     autoComplete="complemento"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        console.log(e.target.value)
+
                                         setValue(`complemento`, e.target.value)
                                     }
                                         // 
@@ -356,6 +390,35 @@ export function UsuarioAdd() {
                                         : ""}
                                 </span>
                             </div>
+
+                            <div className="col-span-2 sm:col-span-2">
+                                <label
+                                    htmlFor="bairro"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Bairro:
+                                </label>
+                                <input
+                                    {...register(`bairro`)}
+                                    type="text"
+                                    name="bairro"
+                                    id="bairro"
+                                    autoComplete="bairro"
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
+                                    onChange={(e) => {
+                                        console.log(e.target.value)
+                                        setValue(`bairro`, e.target.value)
+                                    }
+                                        // 
+                                    }
+                                />
+                                <span className="text-mainDarkRed">
+                                    {errors?.bairro
+                                        ? "Campo obrigatório"
+                                        : ""}
+                                </span>
+                            </div>
+
 
                             <div className="col-span-2 sm:col-span-2">
                                 <label
@@ -410,7 +473,7 @@ export function UsuarioAdd() {
                                     {
                                         listaEstado ?
                                             listaEstado.map((estado: any) => {
-                                                console.log(estado);
+
                                                 return <option key={estado.sigla} value={estado.sigla} >{estado.nome}</option>;
                                             }
                                             )
@@ -441,8 +504,13 @@ export function UsuarioAdd() {
                                     autoComplete="Telefone"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        console.log(e.target.value)
-                                        setValue(`tel`, e.target.value)
+                                        const formated = handleChangeMask(
+                                            e.target.value,
+                                            'phone'
+                                        );
+                                        setTel(formated);
+                                        setValue(`tel`, e.target.value);
+                                        e.target.value = formated;
                                     }
                                         // 
                                     }
@@ -469,8 +537,13 @@ export function UsuarioAdd() {
                                     autoComplete="Celular"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        console.log(e.target.value)
-                                        setValue(`cel`, e.target.value)
+                                        const formated = handleChangeMask(
+                                            e.target.value,
+                                            'phone'
+                                        );
+                                        setCel(formated);
+                                        setValue(`cel`, e.target.value);
+                                        e.target.value = formated;
                                     }
                                         // 
                                     }
@@ -497,7 +570,7 @@ export function UsuarioAdd() {
                                     autoComplete="tamanho_camisaular"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        console.log(e.target.value)
+
                                         setValue(`tamanho_camisa`, e.target.value)
                                     }
                                         // 
@@ -534,7 +607,7 @@ export function UsuarioAdd() {
                                     {
                                         nivelHierarquia ?
                                             nivelHierarquia.map((nivels: any) => {
-                                                console.log(nivels);
+
                                                 return <option key={nivels.id} value={nivels.id} >{nivels.nome}</option>;
                                             }
                                             )
