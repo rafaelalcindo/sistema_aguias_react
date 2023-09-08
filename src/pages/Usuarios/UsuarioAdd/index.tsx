@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { handleChangeMask } from '../../../services/utils/mask';
+import { removeMask } from '../../../services/utils/removeMask';
 import { addressByCep } from '../../../services/utils/getAddressByCep';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -21,7 +22,7 @@ interface RegistrationProps {
     sobrenome: string;
     login: string;
     password: string;
-    cep?: string;
+    cep: string;
     endereco?: string;
     numero?: string;
     complemento?: string;
@@ -89,11 +90,11 @@ export function UsuarioAdd() {
 
         tel: yup.string().required("Campo Obrigatório"),
         cel: yup.string().required("Campo Obrigatório"),
+        unidade_id: yup.string().required("Campo Obrigatório"),
 
         tamanho_camisa: yup.string().required("Campo Obrigatório"),
 
-        nivel: yup.number().required("Campo obrigatório"),
-        unidade_id: yup.number().required("Campo Obrigatório")
+        nivel: yup.number().required("Campo obrigatório")
     });
 
     const nivelHierarquia = [
@@ -148,6 +149,62 @@ export function UsuarioAdd() {
     const onSubmit = async (data: RegistrationProps) => {
         setIsLoading(true);
         console.log(data);
+        let cep = removeMask(data.cep, 'cep');
+        let tel = removeMask(String(data.cel), 'phone');
+
+        let insertUsuario = {
+            nome: data.nome,
+            sobrenome: data.sobrenome,
+            login: data.login,
+            password: data.password,
+            tel: removeMask(String(data.tel), 'phone'),
+            cel: removeMask(String(data.cel), 'phone'),
+            tamanho_camisa: data.tamanho_camisa,
+            nivel: data.nivel,
+            unidade_id: data.unidade_id,
+            cep: removeMask(data.cep, 'cep'),
+            endereco: data.endereco,
+            bairro: data.bairro,
+            complemento: data.complemento,
+            cidade: data.cidade,
+            estado: data.estado
+        }
+
+        try {
+
+            let response;
+
+            if (id) {
+                response = await api.put(`/usuario/update/${id}`);
+            } else {
+                response = await api.post(`/usuario/add`, insertUsuario);
+            }
+
+            if (response.data.status === "Error") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Tivemos um problema',
+                    text: 'Não conseguimos realizar o cadastro'
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Usuario cadastrada',
+                    text: 'A usuario foi adicionada com sucesso!'
+                });
+
+                navigate('/usuarios');
+            }
+
+        } catch {
+            Swal.fire({
+                icon: 'error',
+                title: 'Tivemos um problema',
+                text: 'Não conseguimos realizar o cadastro'
+            });
+
+            setIsLoading(false);
+        }
     }
 
     async function completeAddress(cep: string) {
@@ -311,7 +368,7 @@ export function UsuarioAdd() {
                                     autoComplete="cep"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-                                        console.log(e.target.value);
+
                                         const formated = handleChangeMask(
                                             e.target.value,
                                             "cep"
@@ -362,8 +419,35 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
+                            <div className="col-span-1 sm:col-span-1">
+                                <label
+                                    htmlFor="numero"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    numero:
+                                </label>
+                                <input
+                                    {...register(`numero`)}
+                                    type="text"
+                                    name="numero"
+                                    id="numero"
+                                    autoComplete="numero"
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
+                                    onChange={(e) => {
 
-                            <div className="col-span-3 sm:col-span-3">
+                                        setValue(`numero`, e.target.value)
+                                    }
+                                        // 
+                                    }
+                                />
+                                <span className="text-mainDarkRed">
+                                    {errors?.numero
+                                        ? "Campo obrigatório"
+                                        : ""}
+                                </span>
+                            </div>
+
+                            <div className="col-span-2 sm:col-span-2">
                                 <label
                                     htmlFor="complemento"
                                     className="block text-sm font-medium text-gray-700"
@@ -570,7 +654,6 @@ export function UsuarioAdd() {
                                     autoComplete="tamanho_camisaular"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm"
                                     onChange={(e) => {
-
                                         setValue(`tamanho_camisa`, e.target.value)
                                     }
                                         // 
@@ -619,6 +702,46 @@ export function UsuarioAdd() {
                                 {errors.nivel && (
                                     <span className="text-mainDarkRed">
                                         {errors.nivel.message}
+                                    </span>
+                                )}
+                            </div>
+
+
+                            <div className="col-span-1 sm:col-span-1">
+                                <label
+                                    htmlFor="unidade_id"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Unidade
+                                </label>
+                                <select
+                                    {...register("unidade_id")}
+                                    id="unidade_id"
+                                    name="unidade_id"
+                                    autoComplete="unidade_id"
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-mainDarkRed focus:border-mainDarkRed sm:text-sm"
+                                    onChange={(e) => {
+                                        setValue(
+                                            "unidade_id",
+                                            Number(e.target.value)
+                                        );
+                                    }}
+                                >
+                                    <option value='' >Selecione</option>
+                                    {
+                                        unidadeList ?
+                                            unidadeList.map((unidade: any) => {
+                                                return <option key={unidade.id} value={unidade.id} >{unidade.nome}</option>;
+                                            }
+                                            )
+                                            :
+                                            ''
+                                    }
+
+                                </select>
+                                {errors.nivel && (
+                                    <span className="text-mainDarkRed">
+                                        {errors.unidade_id?.message}
                                     </span>
                                 )}
                             </div>
