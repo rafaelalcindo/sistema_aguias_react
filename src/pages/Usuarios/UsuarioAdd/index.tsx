@@ -16,12 +16,13 @@ import { Menubar } from '../../../components/Menubar';
 import { PainelForm } from '../../../components/PainelForm';
 import { ListaProps } from '../../../types/ListaProps';
 import { UnidadeProps } from '../../../types/Unidade';
+import { UsuarioProps } from '../../../types/Usuario';
 
 interface RegistrationProps {
     nome: string;
     sobrenome: string;
     login: string;
-    password: string;
+    password?: string;
     cep: string;
     endereco?: string;
     numero?: string;
@@ -70,7 +71,33 @@ export function UsuarioAdd() {
     // }
 
     useEffect(() => {
+
+        async function getUsuario() {
+            if (id) {
+                const { data } = await api.get<UsuarioProps>(`usuario/${id}`);
+
+                setValue("nome", data.nome);
+                setValue("sobrenome", data.sobrenome);
+                setValue("login", data.login);
+                setValue("tel", handleChangeMask(data.tel, 'phone'));
+                setValue("cel", handleChangeMask(data.cel, 'phone'));
+                setValue("tamanho_camisa", data.tamanho_camisa);
+                setValue("nivel", data.nivel);
+                setValue("unidade_id", Number(data.unidade_id));
+
+                // Endereços
+                setValue("cep", handleChangeMask(data.cep, 'cep'));
+                setValue("endereco", data.endereco);
+                setValue("numero", data.numero);
+                setValue("complemento", data.complemento);
+                setValue("bairro", data.bairro);
+                setValue("cidade", data.cidade);
+                setValue("estado", data.estado);
+            }
+        }
+
         getUnidades();
+        getUsuario();
     }, []);
 
     const schema = yup.object().shape({
@@ -149,8 +176,9 @@ export function UsuarioAdd() {
     const onSubmit = async (data: RegistrationProps) => {
         setIsLoading(true);
         console.log(data);
-        let cep = removeMask(data.cep, 'cep');
-        let tel = removeMask(String(data.cel), 'phone');
+
+
+
 
         let insertUsuario = {
             nome: data.nome,
@@ -169,6 +197,14 @@ export function UsuarioAdd() {
             cidade: data.cidade,
             estado: data.estado
         };
+
+        if (
+            insertUsuario.password != undefined &&
+            insertUsuario.password.length == 0 &&
+            id != undefined
+        ) {
+            delete insertUsuario.password;
+        }
 
         try {
             let response;
