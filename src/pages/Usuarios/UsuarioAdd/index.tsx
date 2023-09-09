@@ -168,10 +168,9 @@ export function UsuarioAdd() {
             complemento: data.complemento,
             cidade: data.cidade,
             estado: data.estado
-        }
+        };
 
         try {
-
             let response;
 
             if (id) {

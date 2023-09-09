@@ -1,3 +1,4 @@
+import { UnidadeProps } from "./Unidade";
 export interface UsuarioProps {
     id: string;
     nome: string;
@@ -22,4 +23,6 @@ export interface UsuarioProps {
     remember_token: string;
 
     unidade_id?: number;
+
+    unidade?: UnidadeProps;
 }
