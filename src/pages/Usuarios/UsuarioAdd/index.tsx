@@ -175,10 +175,6 @@ export function UsuarioAdd() {
 
     const onSubmit = async (data: RegistrationProps) => {
         setIsLoading(true);
-        console.log(data);
-
-
-
 
         let insertUsuario = {
             nome: data.nome,
@@ -192,7 +188,7 @@ export function UsuarioAdd() {
             unidade_id: data.unidade_id,
             cep: removeMask(data.cep, 'cep'),
             endereco: data.endereco,
-            bairro: data.bairro,
+            // bairro: data.bairro,
             complemento: data.complemento,
             cidade: data.cidade,
             estado: data.estado
@@ -210,7 +206,7 @@ export function UsuarioAdd() {
             let response;
 
             if (id) {
-                response = await api.put(`/usuario/update/${id}`);
+                response = await api.put(`/usuario/update/${id}`, insertUsuario);
             } else {
                 response = await api.post(`/usuario/add`, insertUsuario);
             }
@@ -454,7 +450,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-1 sm:col-span-1">
+                            {/* <div className="col-span-1 sm:col-span-1">
                                 <label
                                     htmlFor="numero"
                                     className="block text-sm font-medium text-gray-700"
@@ -480,7 +476,7 @@ export function UsuarioAdd() {
                                         ? "Campo obrigatório"
                                         : ""}
                                 </span>
-                            </div>
+                            </div> */}
 
                             <div className="col-span-2 sm:col-span-2">
                                 <label
@@ -510,7 +506,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-2 sm:col-span-2">
+                            {/* <div className="col-span-2 sm:col-span-2">
                                 <label
                                     htmlFor="bairro"
                                     className="block text-sm font-medium text-gray-700"
@@ -536,10 +532,10 @@ export function UsuarioAdd() {
                                         ? "Campo obrigatório"
                                         : ""}
                                 </span>
-                            </div>
+                            </div> */}
 
 
-                            <div className="col-span-2 sm:col-span-2">
+                            <div className="col-span-1 sm:col-span-1">
                                 <label
                                     htmlFor="cidade"
                                     className="block text-sm font-medium text-gray-700"
