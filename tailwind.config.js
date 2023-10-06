@@ -6,6 +6,7 @@ module.exports = {
                 mainGray: "#4d4d4d", //cinza
                 mainDarkRed: "#c30036", //vermelho escurdo
                 darkBlue: "#031428",
+                darkMiddleBlue: "#04182f",
                 darkLightBlue: "#052447",
                 middleBlue: "#254d7e",
                 lightBlue: "#2e609b",
