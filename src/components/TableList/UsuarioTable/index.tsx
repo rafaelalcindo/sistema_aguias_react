@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, HtmlHTMLAttributes, useState } from 'react';
 import Swal from "sweetalert2";
-import { HiTrash, HiPencil, HiArrowDown, HiArrowUp } from "react-icons/hi";
+import { HiTrash, HiPencil, HiArrowDown, HiArrowUp, HiQrcode } from "react-icons/hi";
 
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 import { UsuarioProps } from '../../../types/Usuario';
 import history from '../../../services/history';
+import { AlertModal } from '../../Modals/AlertModal';
 
 type UsuarioTable = {
     title: string;
@@ -30,6 +31,8 @@ export function UsuarioTable(
 
     const [orderName, setOrderName] = useState('');
     const [orderDirection, setOrderDirection] = useState('');
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [modalContent, setModalContent] = useState<any>();
 
     async function organizeDirection(orderName: string) {
 
@@ -76,6 +79,18 @@ export function UsuarioTable(
 
     async function removeUsuario(id: number) {
 
+    }
+
+    /**
+     *  get the path of QR code from the Backend, and show with a 'href' link in a image
+     * */
+    async function showQrCode(qrCodeLink: string) {
+        setModalContent(
+            <div className='flex justify-center' >
+                <img src={`${process.env.REACT_APP_HOST}qrcode/${qrCodeLink}`} width={200} height={200} />
+            </div>
+        );
+        setIsOpen(true);
     }
 
     return (
@@ -171,12 +186,13 @@ export function UsuarioTable(
                                                                 {({ active }) => (
                                                                     <a
                                                                         href="#"
+                                                                        onClick={() => showQrCode(item.qr_code)}
                                                                         className={classNames(
                                                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                                             'block px-4 py-2 text-sm'
                                                                         )}
                                                                     >
-                                                                        License
+                                                                        <span className='flex flex-row text-blue-600'> <HiQrcode className='mt-1 ' /> &nbsp; QR Code</span>
                                                                     </a>
                                                                 )}
                                                             </Menu.Item>
@@ -213,6 +229,13 @@ export function UsuarioTable(
                     </table>
                 </div>
             </div>
+            <AlertModal
+                title='QR Code'
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+            >
+                {modalContent}
+            </AlertModal>
         </div>
     );
 }

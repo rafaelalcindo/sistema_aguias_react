@@ -60,8 +60,6 @@ export function Dashboard() {
                 return dadosProGrafico;
             });
 
-            console.log(dadosGrafico);
-
             SetDesbravadorLista(data);
             SetDashboardBar(dadosGrafico);
 
