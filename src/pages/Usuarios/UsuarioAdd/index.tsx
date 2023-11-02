@@ -48,6 +48,7 @@ export function UsuarioAdd() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [unidadeList, setUnidadeList] = useState<UnidadeProps[]>([]);
+    const [imgUser, setImgUser] = useState<any>("");
     const [cep, setCep] = useState<string>("");
     const [tel, setTel] = useState<string>("");
     const [cel, setCel] = useState<string>("");
@@ -93,6 +94,11 @@ export function UsuarioAdd() {
                 setValue("bairro", data.bairro);
                 setValue("cidade", data.cidade);
                 setValue("estado", data.estado);
+
+                if (data.foto_perfil) {
+                    setImgUser(`${process.env.REACT_APP_HOST}profile/${data.foto_perfil}`);
+                }
+
             }
         }
 
@@ -176,39 +182,65 @@ export function UsuarioAdd() {
     const onSubmit = async (data: RegistrationProps) => {
         setIsLoading(true);
 
+
+        let formData = new FormData();
+
+        formData.append('nome', data.nome);
+        formData.append('sobrenome', data.sobrenome);
+        formData.append('login', data.login);
+
+        formData.append('tel', removeMask(String(data.tel), 'phone'));
+        formData.append('cel', removeMask(String(data.cel), 'phone'));
+        formData.append('tamanho_camisa', data.tamanho_camisa ? data.tamanho_camisa : '');
+        formData.append('nivel', data.nivel ? String(data.nivel) : '0');
+        formData.append('unidade_id', String(data.unidade_id));
+        formData.append('cep', removeMask(data.cep, 'cep'));
+        formData.append('endereco', String(data.endereco));
+        formData.append('complemento', String(data.complemento));
+        formData.append('cidade', String(data.cidade));
+        formData.append('estado', String(data.estado));
+
+        if (imgUser !== null && imgUser !== undefined && imgUser !== '' && (typeof imgUser !== 'string')) {
+            formData.append('file', imgUser);
+        }
+
         let insertUsuario = {
-            nome: data.nome,
-            sobrenome: data.sobrenome,
-            login: data.login,
-            password: data.password,
-            tel: removeMask(String(data.tel), 'phone'),
-            cel: removeMask(String(data.cel), 'phone'),
-            tamanho_camisa: data.tamanho_camisa,
-            nivel: data.nivel,
-            unidade_id: data.unidade_id,
-            cep: removeMask(data.cep, 'cep'),
-            endereco: data.endereco,
-            // bairro: data.bairro,
-            complemento: data.complemento,
-            cidade: data.cidade,
-            estado: data.estado
+            password: data.password
         };
 
         if (
-            insertUsuario.password != undefined &&
-            insertUsuario.password.length == 0 &&
+            insertUsuario.password !== undefined &&
+            insertUsuario.password.length === 0 &&
             id != undefined
         ) {
             delete insertUsuario.password;
+        } else {
+            formData.append('password', String(data.password));
         }
 
         try {
             let response;
 
             if (id) {
-                response = await api.put(`/usuario/update/${id}`, insertUsuario);
+                response = await api.put(
+                    `/usuario/update/${id}`,
+                    formData,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
+                );
             } else {
-                response = await api.post(`/usuario/add`, insertUsuario);
+                response = await api.post(
+                    `/usuario/add`,
+                    formData,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
+                );
             }
 
             if (response.data.status === "Error") {
@@ -262,6 +294,9 @@ export function UsuarioAdd() {
                     formName='userForm'
                     isLoading={isLoading}
                     setIsLoading={setIsLoading}
+                    setImgUser={setImgUser}
+                    imgUser={imgUser}
+                    imageExist={true}
                 >
 
                     <form
@@ -269,6 +304,7 @@ export function UsuarioAdd() {
                         method="POST"
                         id="userForm"
                         onSubmit={handleSubmit(onSubmit)}
+
                     >
 
                         <div className="grid grid-cols-6 gap-6 p-6">
