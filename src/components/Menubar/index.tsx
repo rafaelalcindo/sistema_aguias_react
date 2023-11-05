@@ -40,8 +40,6 @@ export function Menubar({ children }: MenuBarProps) {
         };
     }, []);
 
-    console.log(windowSize.innerWidth);
-
     return (
         <>
             <div className="menuPart h-screen">

@@ -46,6 +46,8 @@ export function Dashboard() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [page, setPage] = useState(1);
 
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+
     const getDashboardBar = useCallback(async () => {
         try {
             const { data } = await api.get<DashboardBarProps[]>(`/dashboard/dashboradbar`);
@@ -94,6 +96,25 @@ export function Dashboard() {
         getDashboardCircle();
     }, []);
 
+    useEffect(() => {
+        function handleWindowResize() {
+            setWindowSize(getWindowSize());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
+    function getWindowSize() {
+        const { innerWidth, innerHeight } = window;
+        return { innerWidth, innerHeight };
+    }
+
+    console.log(windowSize.innerWidth);
+
     return (
         <>
             <Menubar>
@@ -101,51 +122,58 @@ export function Dashboard() {
                 <div className={`container mx-auto`}>
 
                     {/* Gráfico desbravadores aguitos */}
-                    <div className={`flex justify-center ${styles.areaBox}`}>
 
-                        <XYPlot margin={{ bottom: 70 }} xType="ordinal" width={1200} height={300} >
-                            <VerticalGridLines
+                    {
+                        (windowSize.innerWidth > 1000) ?
+                            <div className={`flex justify-center ${styles.areaBox}`}>
 
-                            />
-                            <HorizontalGridLines />
-                            <XAxis
-                                tickLabelAngle={-10}
-                                style={
-                                    {
-                                        fontSize: 9,
-                                        fontWeight: 'bold'
-                                    }
-                                }
-                            />
-                            <YAxis
-                                tickLabelAngle={-10}
-                                style={
-                                    {
-                                        fontSize: 15,
-                                        fontWeight: 'bold'
-                                    }
-                                }
-                            />
-                            <VerticalBarSeries
-                                barWidth={0.3}
-                                // data={[
-                                //     { x: 'Apples', y: 10, color: 1 },
-                                //     { x: 'Bananas', y: 5, color: 2 },
-                                //     { x: 'Cranberries', y: 15, color: 3 },
-                                //     { x: 'Leis', y: 54, color: 4 },
-                                //     { x: 'Trunks', y: 32, color: 5 },
-                                //     { x: 'vegeneddx', y: 43, color: 6 },
-                                //     { x: 'vegened', y: 23, color: 7 },
-                                // ]}
-                                data={dashboardBar}
-                                colorRange={['#d41515', '#2596be', '#3d5760']}
-                            />
+                                <XYPlot margin={{ bottom: 70 }} xType="ordinal" width={1200} height={300} >
+                                    <VerticalGridLines
+
+                                    />
+                                    <HorizontalGridLines />
+                                    <XAxis
+                                        tickLabelAngle={-10}
+                                        style={
+                                            {
+                                                fontSize: 9,
+                                                fontWeight: 'bold'
+                                            }
+                                        }
+                                    />
+                                    <YAxis
+                                        tickLabelAngle={-10}
+                                        style={
+                                            {
+                                                fontSize: 15,
+                                                fontWeight: 'bold'
+                                            }
+                                        }
+                                    />
+                                    <VerticalBarSeries
+                                        barWidth={0.3}
+                                        // data={[
+                                        //     { x: 'Apples', y: 10, color: 1 },
+                                        //     { x: 'Bananas', y: 5, color: 2 },
+                                        //     { x: 'Cranberries', y: 15, color: 3 },
+                                        //     { x: 'Leis', y: 54, color: 4 },
+                                        //     { x: 'Trunks', y: 32, color: 5 },
+                                        //     { x: 'vegeneddx', y: 43, color: 6 },
+                                        //     { x: 'vegened', y: 23, color: 7 },
+                                        // ]}
+                                        data={dashboardBar}
+                                        colorRange={['#d41515', '#2596be', '#3d5760']}
+                                    />
 
 
-                        </XYPlot>
-                    </div>
+                                </XYPlot>
+                            </div>
 
-                    <div className={`flex flex-row `} >
+                            :
+                            ''
+                    }
+
+                    <div className={`flex flex-row flex-wrap`} >
                         <div className={`graphicUnidades  ${styles.areaBox}`}>
                             <h3 className={`text-5xl font-bold`} >Unidades</h3>
                             <RadialChart
