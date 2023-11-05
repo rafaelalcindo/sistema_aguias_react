@@ -196,7 +196,7 @@ export function UsuarioTable(
                                                                     </a>
                                                                 )}
                                                             </Menu.Item>
-                                                            <form method="POST" action="#">
+                                                            {/* <form method="POST" action="#">
                                                                 <Menu.Item>
                                                                     {({ active }) => (
                                                                         <button
@@ -210,7 +210,7 @@ export function UsuarioTable(
                                                                         </button>
                                                                     )}
                                                                 </Menu.Item>
-                                                            </form>
+                                                            </form> */}
                                                         </div>
                                                     </Menu.Items>
                                                 </Transition>

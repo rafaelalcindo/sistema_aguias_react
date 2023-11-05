@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { motion } from 'framer-motion';
 import * as yup from 'yup';
@@ -16,10 +16,31 @@ interface MenuBarProps {
 export function Menubar({ children }: MenuBarProps) {
 
     const [openMenu, setOpenMenu] = useState(false);
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+
 
     function changeMenu() {
         setOpenMenu(!openMenu);
     }
+
+    function getWindowSize() {
+        const { innerWidth, innerHeight } = window;
+        return { innerWidth, innerHeight };
+    }
+
+    useEffect(() => {
+        function handleWindowResize() {
+            setWindowSize(getWindowSize());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
+    console.log(windowSize.innerWidth);
 
     return (
         <>
@@ -73,9 +94,19 @@ export function Menubar({ children }: MenuBarProps) {
                 <div className='flex flex-row' >
                     <SideMenu
                         open={openMenu}
+                        sizeWidthScreen={(windowSize.innerWidth <= 860 && openMenu)}
                     />
 
-                    {children}
+
+
+                    {
+                        (windowSize.innerWidth <= 860 && openMenu) ?
+                            ''
+                            :
+                            children
+                    }
+
+
                 </div>
 
 

@@ -11,9 +11,10 @@ import styles from './styles.module.scss';
 
 interface SideMenuProps {
     open: Boolean;
+    sizeWidthScreen: Boolean;
 }
 
-export function SideMenu({ open }: SideMenuProps) {
+export function SideMenu({ open, sizeWidthScreen }: SideMenuProps) {
 
     const { handleLogOut } = useContext(Context);
 
@@ -23,7 +24,7 @@ export function SideMenu({ open }: SideMenuProps) {
     return (
         <motion.div
             // className="flex flex-col bg-darkLightBlue w-1/5 h-full px-2"
-            className="flex flex-col bg-darkMiddleBlue w-1/5 px-2"
+            className={`flex flex-col bg-darkMiddleBlue ${sizeWidthScreen ? 'w-screen h-screen' : 'w-1/5'}  px-2`}
             initial={initial}
             animate={animete}
             transition={{ duration: 0.3, ease: "linear" }}
