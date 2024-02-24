@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import { Login } from '../../pages/Login';
 import { Dashboard } from '../../pages/Dashboard';
 import { Usuarios } from '../../pages/Usuarios';
@@ -10,6 +10,8 @@ const PublicRoute = () => (
     <Routes>
         <Route path='/' element={<Login />} />
 
+        {/* replace Redirect with Navigate */}
+        <Route path="*" element={<Navigate to="/" />} />
     </Routes>
 );
 

@@ -88,14 +88,16 @@ const AuthProvider = ({ children }: any) => {
         } catch { }
     }
 
-    function handleLogOut() {
+    async function handleLogOut() {
         localStorage.removeItem('SistemaAguias@token');
         localStorage.removeItem('SistemaAguias@usuario');
 
         api.defaults.headers.common["Authorization"] = "";
 
-        setAuthenticated(false);
         history.push('/');
+        setUsuario(null);
+        setAuthenticated(false);
+
     }
 
     return (

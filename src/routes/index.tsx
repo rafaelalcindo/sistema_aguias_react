@@ -19,6 +19,8 @@ const Routes = () => {
         )
     }
 
+    console.log(authenticated);
+
     return (
         <BrowserRouter>
             <PublicRoute />

@@ -1,0 +1,185 @@
+Cliente;Endereço;Período;Produto;"Nº Caçamba";Status;"Data Retirar"
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;;Encerrado;06/12/2023
+"teste 27/07";"Rua Nicolau Alayon, 477, Interlagos, São Paulo";Dia;Basculante;3051;Atualização;15/08/2023
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;2082;Encerrado;19/07/2023
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Caixas;13;Atualização;26/06/2023
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1009;Atualização;23/06/2023
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Dia;Basculante;;Atualização;23/06/2023
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Caixas;28;Atualização;16/06/2023
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;501;Encerrado;11/05/2023
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;31;Encerrado;29/04/2023
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;;Atualização;04/01/2023
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Caixas;2921;Retorno;04/01/2023
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Caixas;;Atualização;25/12/2022
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;;Encerrado;22/12/2022
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Caixas;105;Atualização;28/10/2022
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Caixas;105;Atualização;28/10/2022
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;;Encerrado;26/10/2022
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;;Encerrado;24/10/2022
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;151;Atualização;05/10/2022
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;;Encerrado;26/08/2022
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Dia;Caixas;3;Adicional;23/07/2022
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Basculante;;Encerrado;23/05/2022
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Dia;Caixas;;Encerrado;23/05/2022
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;;Encerrado;25/12/2021
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Dia;Basculante;;Encerrado;29/10/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;;Encerrado;28/10/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;;Encerrado;28/10/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;;Encerrado;28/10/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;;Encerrado;25/10/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;100;Encerrado;13/09/2021
+"Louro José";"Rua Garcia Lorca, 323, teste, Jardim Trussardi, São Paulo";Dia;Bobkaet;;Adicional;07/06/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Basculante;;Encerrado;17/05/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1475;Retorno;12/05/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1475;Retorno;12/05/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Retorno;11/05/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Retorno;11/05/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Retorno;11/05/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Retorno;11/05/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Retorno;11/05/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Retorno;11/05/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Noite;Caixas;1101;Encerrado;07/05/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Basculante;;Encerrado;01/05/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;26/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;21/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1467;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1465;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1466;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1464;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1463;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1462;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1461;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1460;Encerrado;20/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1103;Encerrado;19/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1101;Encerrado;19/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1100;Encerrado;19/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1090;Encerrado;16/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;1091;Encerrado;16/04/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;6;Encerrado;09/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;4;Encerrado;09/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;5;Encerrado;09/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Encerrado;09/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;4;Encerrado;09/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Encerrado;09/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;1;Adicional;09/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Encerrado;09/04/2021
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Dia;Basculante;;Encerrado;08/04/2021
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Dia;Basculante;;Encerrado;08/04/2021
+"Louro José";"Rua Garcia Lorca, 323, teste, Jardim Trussardi, São Paulo";Dia;Bobkaet;1095;Adicional;06/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;2;Adicional;06/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;3;Adicional;06/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;4;Adicional;06/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;2;Adicional;06/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;3;Adicional;06/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;06/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;505;Retorno;06/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;505;Retorno;06/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;05/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;2;Encerrado;05/04/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Dia;Caixas;2;Encerrado;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Caixas;459;Retorno;05/04/2021
+Amanda;"Rua Aleixo Leme dos Reis, 100, Jardim Consórcio, São Paulo";Dia;Basculante;;Encerrado;03/04/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Dia;Basculante;;Encerrado;01/04/2021
+Amanda;"Rua Aleixo Leme dos Reis, 100, Jardim Consórcio, São Paulo";Dia;Basculante;;Encerrado;31/03/2021
+Amanda;"Rua Aleixo Leme dos Reis, 100, Jardim Consórcio, São Paulo";Dia;Basculante;;Encerrado;31/03/2021
+Amanda;"Rua Aleixo Leme dos Reis, 100, Jardim Consórcio, São Paulo";Dia;Basculante;;Encerrado;30/03/2021
+Amanda;"Rua Marcílio Dias, 50, Socorro, São Paulo";Noite;Caixas;3;Encerrado;29/03/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Basculante;;Encerrado;26/03/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Basculante;;Encerrado;26/03/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Basculante;;Encerrado;26/03/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Basculante;;Encerrado;26/03/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Basculante;;Encerrado;26/03/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;588;Encerrado;05/03/2021
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;578;Encerrado;05/03/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Encerrado;01/03/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Encerrado;01/03/2021
+"paraisopolis exemplo";"Beco Vila Rica, 100, paraisopoles teste, Paraisópolis, São Paulo";Noite;Caixas;3;Encerrado;01/03/2021
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;1;Encerrado;26/02/2021
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;5;Encerrado;05/10/2020
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;7;Encerrado;05/10/2020
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;550;Encerrado;02/10/2020
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;548;Encerrado;02/10/2020
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;549;Encerrado;02/10/2020
+Amanda;"Rua Alessandro Bandettini, 321, Quebrada, Itu";Noite;Basculante;6;Encerrado;01/10/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;1;Encerrado;30/09/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;1;Encerrado;25/09/2020
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Basculante;1;Encerrado;24/09/2020
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Basculante;1;Encerrado;24/09/2020
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Basculante;1;Encerrado;24/09/2020
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Basculante;1;Encerrado;24/09/2020
+Amanda;"Rua dos Inocentes, 50, Socorro, São Paulo";Dia;Basculante;1;Encerrado;24/09/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;2;Encerrado;23/09/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;1;Encerrado;21/09/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Noite;Bobkaet;1;Encerrado;21/09/2020
+"Nicolas Gustavo Luís da Rocha";"Rua Santana do Deserto, 54, Capano, Guarulhos";Dia;Basculante;5;Encerrado;17/08/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;1;Encerrado;13/08/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;145;Encerrado;13/08/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;154;Encerrado;13/08/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;154;Encerrado;13/08/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 501, Jardim da Rainha, Itapevi";Dia;Caixas;554;Encerrado;13/08/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 501, Jardim da Rainha, Itapevi";Dia;Caixas;554;Encerrado;13/08/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 501, Jardim da Rainha, Itapevi";Dia;Caixas;545;Encerrado;13/08/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 501, Jardim da Rainha, Itapevi";Dia;Caixas;4;Encerrado;13/08/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 501, Jardim da Rainha, Itapevi";Dia;Caixas;554;Encerrado;13/08/2020
+"Nicolas Gustavo Luís da Rocha";"Rua Santana do Deserto, 54, Capano, Guarulhos";Noite;Basculante;3;Encerrado;13/08/2020
+"Nicolas Gustavo Luís da Rocha";"Rua Santana do Deserto, 54, Capano, Guarulhos";Noite;Basculante;4;Encerrado;13/08/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;18;Encerrado;15/07/2020
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;18;Encerrado;15/07/2020
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;18;Encerrado;15/07/2020
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;18;Encerrado;15/07/2020
+Amanda;"Rua Sete, 23, Parque Camboriú, São Bernardo do Campo";Dia;Caixas;18;Encerrado;15/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;317;Encerrado;14/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;317;Encerrado;14/07/2020
+"Fábio e Valentina Limpeza Ltda";"Praça Maria das Neves Feijó, 47, Jardim da Rainha, Itapevi";Dia;Bobkaet;317;Encerrado;14/07/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;1;Encerrado;15/06/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;3;Encerrado;15/06/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;1;Encerrado;15/06/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;3;Encerrado;15/06/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;5;Encerrado;15/06/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;7;Encerrado;15/06/2020
+"Luiz Construção";"Rua José Rubens, 322, teste, Caxingui, São Paulo";Dia;Bobkaet;9;Encerrado;15/06/2020
+"Miguel ramos";"Rua João Pizarro Gabizo, 12, Santana, São Paulo";Dia;Bobkaet;;Adicional;15/06/2020
+"Miguel ramos";"Rua João Pizarro Gabizo, 12, Santana, São Paulo";Dia;Bobkaet;;Adicional;15/06/2020
+"Miguel ramos";"Rua João Pizarro Gabizo, 12, Santana, São Paulo";Dia;Bobkaet;;Adicional;15/06/2020
+"Miguel ramos";"Rua João Pizarro Gabizo, 12, Santana, São Paulo";Dia;Bobkaet;;Adicional;15/06/2020
+"Miguel ramos";"Rua João Pizarro Gabizo, 12, Santana, São Paulo";Dia;Bobkaet;;Adicional;15/06/2020
+"Louro José";"Rua Garcia Lorca, 323, teste, Jardim Trussardi, São Paulo";Dia;Bobkaet;;Adicional;10/06/2020
+"Louro José";"Rua Garcia Lorca, 323, teste, Jardim Trussardi, São Paulo";Dia;Bobkaet;;Adicional;10/06/2020
+"Louro José";"Rua Garcia Lorca, 323, teste, Jardim Trussardi, São Paulo";Dia;Bobkaet;;Adicional;10/06/2020
+"Louro José";"Rua Garcia Lorca, 323, teste, Jardim Trussardi, São Paulo";Dia;Bobkaet;;Adicional;10/06/2020
+"Louro José";"Rua Garcia Lorca, 323, teste, Jardim Trussardi, São Paulo";Dia;Bobkaet;;Adicional;10/06/2020
