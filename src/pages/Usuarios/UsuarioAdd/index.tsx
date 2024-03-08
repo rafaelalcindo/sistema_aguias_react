@@ -420,7 +420,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-2">
                                 <label
                                     htmlFor="cep"
                                     className="block text-sm font-medium text-gray-700"
@@ -458,7 +458,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-2 sm:col-span-2">
+                            <div className="col-span-3 sm:col-span-3">
                                 <label
                                     htmlFor="endereco"
                                     className="block text-sm font-medium text-gray-700"
@@ -514,7 +514,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div> */}
 
-                            <div className="col-span-2 sm:col-span-2">
+                            <div className="col-span-4 sm:col-span-4">
                                 <label
                                     htmlFor="complemento"
                                     className="block text-sm font-medium text-gray-700"
@@ -571,7 +571,7 @@ export function UsuarioAdd() {
                             </div> */}
 
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-3">
                                 <label
                                     htmlFor="cidade"
                                     className="block text-sm font-medium text-gray-700"
@@ -599,7 +599,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-3">
 
                                 <label
                                     htmlFor="estado"
@@ -640,7 +640,7 @@ export function UsuarioAdd() {
                                 )}
                             </div>
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-3">
                                 <label
                                     htmlFor="tel"
                                     className="block text-sm font-medium text-gray-700"
@@ -673,7 +673,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-3">
                                 <label
                                     htmlFor="cel"
                                     className="block text-sm font-medium text-gray-700"
@@ -706,7 +706,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-3">
                                 <label
                                     htmlFor="tamanho_camisa"
                                     className="block text-sm font-medium text-gray-700"
@@ -733,7 +733,7 @@ export function UsuarioAdd() {
                                 </span>
                             </div>
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-3">
                                 <label
                                     htmlFor="nivel"
                                     className="block text-sm font-medium text-gray-700"
@@ -774,7 +774,7 @@ export function UsuarioAdd() {
                             </div>
 
 
-                            <div className="col-span-1 sm:col-span-1">
+                            <div className="col-span-3 sm:col-span-1">
                                 <label
                                     htmlFor="unidade_id"
                                     className="block text-sm font-medium text-gray-700"
